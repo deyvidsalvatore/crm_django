@@ -2,8 +2,12 @@ from django.shortcuts import redirect, render
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from website.forms import SignUpForm
+from website.models import Record
 
 def home(request):
+    records = Record.objects.all()
+    
+    
     # Checar se o usuário está logado
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -18,7 +22,7 @@ def home(request):
             messages.error(request, "Erro: Cheque suas crendenciais e me forneça de forma correta")
             return redirect('home')
     else:
-        return render(request, 'home.html', {})
+        return render(request, 'home.html', {'records':records})
 
 # def login_user(request):
 #    pass
