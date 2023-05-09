@@ -21,5 +21,7 @@ def home(request):
 # def login_user(request):
 #    pass
 
-# def logout_user(request):
-#    pass
+def logout_user(request):
+    logout(request)
+    messages.success(request, "Você deslogou da sua conta.")
+    return redirect('home')
